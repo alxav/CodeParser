@@ -1,0 +1,6 @@
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\bin\Debug\CodeParser.exe
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\bin\Debug\CodeParser.pdb
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.csprojAssemblyReference.cache
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.csproj.CoreCompileInputs.cache
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.exe
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.pdb
