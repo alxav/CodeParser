@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FWsEMHP5JQ3yRMnYMYSFrhUrtyeCiuD0snLbHCZMimVaRCnWtCSyAdnTVfb7sW+C34gtW0s+nVhkNMSjPP4mfg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\AL\\RiderProjects\\CodeParser\\CodeParser\\CodeParser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\AL\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

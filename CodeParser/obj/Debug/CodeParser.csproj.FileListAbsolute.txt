@@ -4,3 +4,6 @@ C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.csprojAssem
 C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.csproj.CoreCompileInputs.cache
 C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.exe
 C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.pdb
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\bin\Debug\Newtonsoft.Json.dll
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\bin\Debug\Newtonsoft.Json.xml
+C:\Users\AL\RiderProjects\CodeParser\CodeParser\obj\Debug\CodeParser.csproj.CopyComplete

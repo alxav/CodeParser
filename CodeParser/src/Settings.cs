@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace CodeParser
 {
@@ -17,9 +18,10 @@ namespace CodeParser
             
             try
             {
-                using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
+                using (StreamReader file = new StreamReader(fileName))
                 {
-                    return new DataSettings();
+                    DataSettings data = JsonConvert.DeserializeObject<DataSettings>(file.ReadToEnd());
+                    return data;
                 }
             }
             catch (Exception e)
