@@ -13,12 +13,13 @@ namespace CodeParser
         private string types;
         private List<string> files = new List<string>();
         private Parser parser = new Parser();
+        private Filter filter;
 
-
-        public Files(string path, string types)
+        public Files(string path, string types, int filter)
         {
-            this.path = path; 
+            this.path = path;
             this.types = types;
+            this.filter = new Filter(filter);
         }
 
         public List<string> GetFiles()
@@ -30,7 +31,7 @@ namespace CodeParser
         private bool Filter(string file)
         {
             if (types.Length == 0) return true;
-            return Regex.IsMatch(file,@"\.(?:"+types+")$", RegexOptions.IgnoreCase);
+            return Regex.IsMatch(file, @"\.(?:" + types + ")$", RegexOptions.IgnoreCase);
         }
 
 
@@ -40,7 +41,7 @@ namespace CodeParser
 
             foreach (var file in _files)
             {
-                files.Add(file);  
+                files.Add(file);
             }
 
             var childrenDirectory = Directory.GetDirectories(_path);
@@ -52,27 +53,42 @@ namespace CodeParser
         }
 
 
-        public string[] Read(string file)
+        public List<DataLine> Read(string file)
         {
-            string[] result = new string[] {};
+            List<DataLine> result = new List<DataLine>();
             FileStream fstream = null;
             try
             {
                 using (fstream = File.OpenRead(file))
                 {
                     byte[] array = new byte[fstream.Length];
-                
-                    fstream.Read(array, 0, array.Length);
- 
-                    var data = Encoding.UTF8.GetString(array);
-                    
-                    result = parser.Lines(data);
-                }
 
-               
-                
+                    fstream.Read(array, 0, array.Length);
+
+                    var data = Encoding.UTF8.GetString(array);
+
+                    var lines = parser
+                        .Lines(data);
+
+                    for (var i = 0; i < lines.Length; i++)
+                    {
+                        var str = lines[i];
+                        var number = i + 1;
+
+
+                        if (filter.Comparison(str))
+                        {
+                            result.Add(new DataLine()
+                            {
+                                number = number,
+                                text = str
+                            });
+                        }
+                          
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -81,10 +97,14 @@ namespace CodeParser
                 if (fstream != null)
                     fstream.Close();
             }
-            
-            return result; 
+
+            return result;
         }
+    }
 
-
+    public class DataLine
+    {
+        public int number;
+        public string text;
     }
 }

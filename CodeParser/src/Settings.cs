@@ -38,5 +38,6 @@ namespace CodeParser
         public string Directory;
         public string ResultName;
         public string Types; // "js|ts|html"
+        public int Filter;
     }
 }

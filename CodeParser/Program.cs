@@ -6,9 +6,11 @@ namespace CodeParser
     {
         public static void Main(string[] args)
         {
+            var startTime = DateTime.Now;
+            
             var setting = new Settings("settings.json").Get();
             
-            var files = new Files(setting.Directory, setting.Types);
+            var files = new Files(setting.Directory, setting.Types, setting.Filter);
             var result = new Result(setting.ResultName);
             
             var list = files.GetFiles();
@@ -21,22 +23,29 @@ namespace CodeParser
 
 
             result.Open();
+            var countLine = 0;
             
             foreach (var element in list)
             {
 
                 var lines = files.Read(element);
                 
-                result.WriteHead(element, lines.Length);
+                if (lines.Count == 0) continue;
+
+                countLine += lines.Count;
+
+                result.WriteHead(element, lines.Count);
                 
-                for (var i = 0; i < lines.Length; i++)
+                lines.ForEach((line) =>
                 {
-                    var number = i + 1;
-                    result.WriteLine(number, lines[i]);
-                }
-                
+                    result.WriteLine(line.number , line.text);
+                });
+
             }
             
+            var finishTime = DateTime.Now;
+
+            result.WriteStatistic(list.Count, countLine, startTime, finishTime, setting);
             
             result.Close();
             
