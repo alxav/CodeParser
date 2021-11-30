@@ -41,6 +41,8 @@
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Files.cs" />
+        <Compile Include="src\Parser.cs" />
+        <Compile Include="src\Result.cs" />
         <Compile Include="src\Settings.cs" />
     </ItemGroup>
     <ItemGroup>
