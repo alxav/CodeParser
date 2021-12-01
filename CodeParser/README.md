@@ -4,11 +4,11 @@
  
  - Нужно указать рабочую директорию. Любое удобное дял вас место 
  
-![img.png](img.png)
+![img.png](readme/img.png)
 
  - После скопировать файл settings.json из CodeParser/settings/settings.json в рабочую директорию
 
-![img_1.png](img_1.png)
+![img_1.png](readme/img_1.png)
 
  - Заполнить файл settings.json
 
