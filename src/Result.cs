@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CodeParser
 {
     public class Result
     {
+        private Dictionary<string, List<LineData>> lines = new Dictionary<string, List<LineData>>();
         private StreamWriter streamWriter;
         private string fileName;
 
@@ -45,13 +47,19 @@ namespace CodeParser
                       $"Кол. найденных строк: {countLine} {Environment.NewLine} " +
                       $"Время начала: {start:dd.MM.yyyy hh:mm:ss} {Environment.NewLine} " +
                       $"Время окончания: {finish:dd.MM.yyyy hh:mm:ss} {Environment.NewLine}";
-            
-            var strSetting =  $"{Environment.NewLine}Настройки {Environment.NewLine} " +
-                              $"Директория: {settings.Directory} {Environment.NewLine} " +
-                              $"Типы обрабатываемых файлов: {settings.Types} {Environment.NewLine} " +
-                              $"Фильтр: {settings.Filter} {Environment.NewLine}";
+
+            var strSetting = $"{Environment.NewLine}Настройки {Environment.NewLine} " +
+                             $"Директория: {settings.Directory} {Environment.NewLine} " +
+                             $"Типы обрабатываемых файлов: {settings.Types} {Environment.NewLine}";
             
             streamWriter.WriteLine(str + strSetting);
         }
+    }
+
+    public class LineData
+    {
+        public int number;
+        public string text;
+        public int isIgnore;
     }
 }

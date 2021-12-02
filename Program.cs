@@ -1,4 +1,7 @@
 ﻿using System;
+using CodeParser.Lines;
+using CodeParser.Operation;
+using CodeParser.Operation.Interface;
 
 namespace CodeParser
 {
@@ -6,51 +9,38 @@ namespace CodeParser
     {
         public static void Main(string[] args)
         {
-            var startTime = DateTime.Now;
-            
             var settings = new Settings("settings.json");
             settings.Load();
-            
-            var files = new Files(settings.Directory, settings.Types, settings.Filter);
-            var result = new Result(settings.ResultName);
-            
-            var list = files.GetFiles();
 
-            if (list.Count == 0)
+            var files = new Files(settings.Directory, settings.Types);
+
+            var fileList = files.GetFiles();
+
+            if (fileList.Count == 0)
             {
                 Console.WriteLine("Files not found!");
                 return;
             }
 
-
-            result.Open();
-            var countLine = 0;
+            var fileResult = new FileResult(settings.ResultName);
             
-            foreach (var element in list)
+            foreach (var fileName in fileList)
             {
+                var comment = new Comments();
+                var ru = new Ru();
+                var format = new Format();
 
-                var lines = files.Read(element);
+                var operation = new IOperation[] { comment, ru, format };
+
+                var analyzer = new Analyzer(fileName, operation);
+                analyzer.Start();
                 
-                if (lines.Count == 0) continue;
-
-                countLine += lines.Count;
-
-                result.WriteHead(element, lines.Count);
+                if (format.Result().Count == 0) continue;
                 
-                lines.ForEach((line) =>
-                {
-                    result.WriteLine(line.number , line.text);
-                });
-
+                fileResult.Add(fileName, format.Result());
             }
-            
-            var finishTime = DateTime.Now;
 
-            result.WriteStatistic(list.Count, countLine, startTime, finishTime, settings);
-            
-            result.Close();
-            
+            fileResult.Save();
         }
     }
 }
-

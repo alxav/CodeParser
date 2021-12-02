@@ -11,7 +11,6 @@ namespace CodeParser
         private string directory;
         private string resultName;
         private string types;
-        private int filter;
         
         
         public Settings(string file)
@@ -32,7 +31,6 @@ namespace CodeParser
                     directory = data.Directory;
                     resultName = data.ResultName;
                     types = data.Types;
-                    filter = data.Filter;
 
                 }
             }
@@ -49,13 +47,11 @@ namespace CodeParser
 
         public string Types => types;
 
-        public int Filter => filter;
     }
     public class DataSettings
     {
         public string Directory;
         public string ResultName;
         public string Types; // "js|ts|html"
-        public int Filter;
     }
 }
