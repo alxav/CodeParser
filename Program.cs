@@ -8,10 +8,11 @@ namespace CodeParser
         {
             var startTime = DateTime.Now;
             
-            var setting = new Settings("settings.json").Get();
+            var settings = new Settings("settings.json");
+            settings.Load();
             
-            var files = new Files(setting.Directory, setting.Types, setting.Filter);
-            var result = new Result(setting.ResultName);
+            var files = new Files(settings.Directory, settings.Types, settings.Filter);
+            var result = new Result(settings.ResultName);
             
             var list = files.GetFiles();
 
@@ -45,7 +46,7 @@ namespace CodeParser
             
             var finishTime = DateTime.Now;
 
-            result.WriteStatistic(list.Count, countLine, startTime, finishTime, setting);
+            result.WriteStatistic(list.Count, countLine, startTime, finishTime, settings);
             
             result.Close();
             

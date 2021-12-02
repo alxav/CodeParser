@@ -8,12 +8,19 @@ namespace CodeParser
     {
         private readonly string fileName;
 
+        private string directory;
+        private string resultName;
+        private string types;
+        private int filter;
+        
+        
         public Settings(string file)
         {
             fileName = file;
         }
 
-        public DataSettings Get ()
+        
+        public void Load()
         {
             
             try
@@ -21,7 +28,12 @@ namespace CodeParser
                 using (StreamReader file = new StreamReader(fileName))
                 {
                     DataSettings data = JsonConvert.DeserializeObject<DataSettings>(file.ReadToEnd());
-                    return data;
+
+                    directory = data.Directory;
+                    resultName = data.ResultName;
+                    types = data.Types;
+                    filter = data.Filter;
+
                 }
             }
             catch (Exception e)
@@ -31,7 +43,13 @@ namespace CodeParser
             }
 
         }
-        
+
+        public string Directory => directory;
+        public string ResultName => resultName;
+
+        public string Types => types;
+
+        public int Filter => filter;
     }
     public class DataSettings
     {

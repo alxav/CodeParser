@@ -38,7 +38,7 @@ namespace CodeParser
             streamWriter.WriteLine(str);
         }
 
-        public void WriteStatistic(int countFile, int countLine, DateTime start, DateTime finish, DataSettings settings)
+        public void WriteStatistic(int countFile, int countLine, DateTime start, DateTime finish, Settings settings)
         {
             var str = $"{Environment.NewLine}Статистика {Environment.NewLine} " +
                       $"Кол. обработанных файлов: {countFile} {Environment.NewLine} " +
